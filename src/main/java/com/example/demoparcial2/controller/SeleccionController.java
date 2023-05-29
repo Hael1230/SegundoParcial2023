@@ -40,6 +40,16 @@ public class SeleccionController{
 
 	}
 
+    @PostMapping
+	public Seleccion postSeleccion(@RequestBody Seleccion seleccion) {
+		
+		seleccionRepository.save(seleccion);
+		
+		return seleccion;
+		
+
+	}
+
 
 }
 
