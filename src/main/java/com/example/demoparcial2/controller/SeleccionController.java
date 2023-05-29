@@ -28,6 +28,12 @@ public class SeleccionController{
 	SeleccionRepository seleccionRepository;
 
     @GetMapping
+	public List<Seleccion> getSeleccionAll() {
+
+		return seleccionRepository.findAll();
+	}
+
+    @GetMapping("/{nombre}/continente")
     public Continente getContinenteNombre(@PathVariable String nombre) {
 		
 		List<Seleccion> seleccion = seleccionRepository.findByNombre(nombre);
