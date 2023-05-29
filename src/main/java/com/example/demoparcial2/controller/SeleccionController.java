@@ -56,7 +56,7 @@ public class SeleccionController{
 
 	}
 
-    @GetMapping("/<id>")
+    @GetMapping("/{id}")
 	public Seleccion getSeleccionbyId(@PathVariable Integer id) {
 		
 		Optional<Seleccion> seleccion = seleccionRepository.findById(id);
@@ -81,6 +81,19 @@ public class SeleccionController{
 			seleccionRepository.deleteById(id);
 			
 			return seleccionReturn;
+		}
+		
+		return null;
+
+	}
+
+    @GetMapping("/grupo/{grupo}")
+	public Seleccion getSeleccionbyGrupo(@PathVariable String grupo) {
+		
+		Optional<Seleccion> seleccion = seleccionRepository.findByGrupo(grupo);
+		
+		if (seleccion.isPresent()) {
+			return seleccion.get();
 		}
 		
 		return null;
