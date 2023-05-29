@@ -68,7 +68,25 @@ public class SeleccionController{
 		return null;
 
 	}
-    
+
+    @DeleteMapping("/{id}")
+	public Seleccion deleteSeleccionbyId(@PathVariable Integer id) {
+		
+		Optional<Seleccion> seleccion = seleccionRepository.findById(id);
+		
+		if (seleccion.isPresent()) {
+			
+			final Seleccion seleccionReturn = seleccion.get();
+			
+			seleccionRepository.deleteById(id);
+			
+			return seleccionReturn;
+		}
+		
+		return null;
+
+	}
+
 
 
 
