@@ -15,6 +15,7 @@ import com.example.demoparcial2.entitis.Seleccion;
 import com.example.demoparcial2.entitis.Continente;
 import com.example.demoparcial2.repository.SeleccionRepository;
 import com.example.demoparcial2.entitis.Resultado;
+import com.example.demoparcial2.repository.ResultadoRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -122,6 +123,31 @@ public class SeleccionController{
 		return null;
 
 	}
+
+	@GetMapping("/{id}/resultado")
+public Seleccion getSeleccionById(@PathVariable Integer id) {
+    Optional<Seleccion> seleccionCurrent = seleccionRepository.findById(id);
+
+    if (seleccionCurrent.isPresent()) {
+        Seleccion seleccion = seleccionCurrent.get();
+        Seleccion seleccionResult = new Seleccion();
+        seleccionResult.setNombre(seleccion.getNombre());
+        
+		Resultado resultado = resultadoRepository.findBySeleccion(seleccion);
+        if (resultado != null) {
+            seleccionResult.setGoles(resultado.getGoles());
+            seleccionResult.setAmarillas(resultado.getAmarillas());
+            seleccionResult.setRojas(resultado.getRojas());
+        }
+        
+        return seleccionResult;
+        
+        return seleccion;
+    }
+
+    return null;
+}
+
 
 
 
