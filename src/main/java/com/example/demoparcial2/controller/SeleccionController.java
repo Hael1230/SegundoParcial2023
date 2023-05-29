@@ -100,6 +100,29 @@ public class SeleccionController{
 
 	}
 
+    @PutMapping
+	public Seleccion putSeleccionbyId(@PathVariable Integer id, @RequestBody Seleccion seleccion) {
+		
+		Optional<Seleccion> seleccionCurrent = seleccionRepository.findById(id);
+		
+		if (seleccionCurrent.isPresent()) {
+			
+			Seleccion seleccionReturn = seleccionCurrent.get();
+			
+			
+			seleccionReturn.setNombre(seleccion.getNombre());
+			seleccionReturn.setGrupo(seleccion.getGrupo());
+			
+			
+			seleccionRepository.save(seleccionReturn);
+			
+			return seleccionReturn;
+		}
+		
+		return null;
+
+	}
+
 
 
 
