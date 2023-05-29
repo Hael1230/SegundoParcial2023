@@ -56,6 +56,21 @@ public class SeleccionController{
 
 	}
 
+    @GetMapping("/<id>")
+	public Seleccion getSeleccionbyId(@PathVariable Integer id) {
+		
+		Optional<Seleccion> seleccion = seleccionRepository.findById(id);
+		
+		if (seleccion.isPresent()) {
+			return seleccion.get();
+		}
+		
+		return null;
+
+	}
+    
+
+
 
 }
 
